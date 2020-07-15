@@ -7,9 +7,11 @@
   win_domain:
     dns_domain_name: "{{ ad_domain_name }}"
     safe_mode_password: "{{ ad_safe_mode_password }}"
+  register: win_domain_result
 
 - name: Reboot the instance
   win_reboot:
+  when: win_domain_result.reboot_required
 
 - name: Print out the domain list 
   win_shell: "nltest /dclist:{{ ad_domain_name }}"

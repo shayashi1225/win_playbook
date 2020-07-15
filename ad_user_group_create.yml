@@ -1,0 +1,6 @@
+---
+- name: create users
+  hosts: windows
+
+  roles:
+    - win_ad_user
